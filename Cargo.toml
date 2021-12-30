@@ -1,0 +1,29 @@
+[package]
+name = "fast-neural-style-plugin"
+authors = ["Christian <chriamue@gmail.com>"]
+version = "0.1.0"
+edition = "2021"
+description = "Plugin to transfer image styles."
+license = "MIT"
+repository = "https://github.com/lenna-project/fast-neural-style-plugin"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+image = { version = "0.23", default-features = false, features = [
+    "png",
+    "jpeg",
+] }
+imageproc = { version = "0.22", default-features = false }
+lenna_core = { git = "https://github.com/lenna-project/lenna-core", branch = "main" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tract-onnx = "0.15.8"
+
+[target.wasm32-unknown-unknown.dependencies]
+console_error_panic_hook = "0.1"
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.0"
